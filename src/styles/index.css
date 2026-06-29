@@ -1,1 +1,36 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@700;800&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Show sticky CTA bar only on mobile */
+#sticky-bar {
+  display: none;
+}
+@media (max-width: 600px) {
+  #sticky-bar {
+    display: block;
+  }
+  body {
+    padding-bottom: 76px;
+  }
+}
+
+/* Table row hover handled inline; reset default button appearance */
+button {
+  font-family: inherit;
+}
