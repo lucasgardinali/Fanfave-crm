@@ -175,7 +175,12 @@ export default function CRM() {
   useEffect(() => { if (authed) { refresh(); setNotifs(getNotifs()); } }, [authed, refresh]);
   useEffect(() => { if (!toast) return; const t = setTimeout(() => setToast(''), 2600); return () => clearTimeout(t); }, [toast]);
 
-  function login() { if (loginUser === 'lucas' && loginPass === 'fanfave2026') setAuthed(true); else setLoginErr(true); }
+  function login() {
+    const validUser = import.meta.env.VITE_CRM_USER ?? 'lucas';
+    const validPass = import.meta.env.VITE_CRM_PASS ?? '';
+    if (loginUser === validUser && loginPass === validPass) setAuthed(true);
+    else setLoginErr(true);
+  }
   function showToast(msg: string) { setToast(msg); }
   function addNotifFn(msg: string) { pushNotif(msg); setNotifs(getNotifs()); }
 
@@ -244,13 +249,13 @@ export default function CRM() {
         <h2 style={{ fontFamily: 'Sora, sans-serif', fontSize: 20, fontWeight: 700, textAlign: 'center', marginBottom: 4 }}>Bem-vindo de volta</h2>
         <p style={{ fontSize: 13, color: COLORS.grayText, textAlign: 'center', marginBottom: 20 }}>Acesse o painel de leads</p>
         {loginErr && <div style={{ background: '#FEE2E2', color: '#DC2626', fontSize: 12, padding: '9px 12px', borderRadius: 8, marginBottom: 12 }}>Usuário ou senha incorretos.</div>}
-        <InputField label="Usuário" value={loginUser} onChange={setLoginUser} placeholder="lucas" />
+        <InputField label="Usuário" value={loginUser} onChange={setLoginUser} placeholder="Usuário" />
         <div style={{ marginBottom: 12 }}>
           <label style={{ display: 'block', fontSize: 12, fontWeight: 500, color: COLORS.grayText, marginBottom: 4 }}>Senha</label>
           <input type="password" value={loginPass} onChange={(e) => setLoginPass(e.target.value)} placeholder="••••••" onKeyDown={(e) => e.key === 'Enter' && login()} style={{ width: '100%', height: 40, padding: '0 12px', border: `1.5px solid ${COLORS.grayBorder}`, borderRadius: 8, fontSize: 14, fontFamily: 'Inter, sans-serif', outline: 'none', boxSizing: 'border-box' }} />
         </div>
         <button onClick={login} style={{ width: '100%', height: 44, background: COLORS.blue, color: '#fff', border: 'none', borderRadius: 8, fontSize: 15, fontWeight: 600, fontFamily: 'Sora, sans-serif', cursor: 'pointer', marginTop: 4 }}>Entrar →</button>
-        <p style={{ fontSize: 11, color: COLORS.grayText, textAlign: 'center', marginTop: 12 }}>Usuário: <strong>lucas</strong> · Senha: <strong>fanfave2026</strong></p>
+
       </div>
     </div>
   );
