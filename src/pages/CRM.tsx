@@ -376,6 +376,15 @@ export default function CRM() {
     } catch {showToast('Erro ao arquivar');}
   }
 
+  async function deleteLeadPermanent(){
+    if(!detailLead||!confirm(`Excluir "${detailLead.nome}" permanentemente? Esta ação não pode ser desfeita.`))return;
+    try {
+      await deleteLead(detailLead.id as number);
+      setLeads(prev=>prev.filter(l=>l.id!==detailLead.id));
+      setDetailLead(null);showToast('Lead excluído');
+    } catch {showToast('Erro ao excluir');}
+  }
+
   async function restoreLead(id:number){
     const l = leads.find(x=>x.id===id);
     if(!l)return;
@@ -534,7 +543,12 @@ export default function CRM() {
 
       {/* DETAIL MODAL */}
       <Modal open={!!detailLead} onClose={()=>setDetailLead(null)} title={detailLead?.nome??''}
-        footer={<><Btn variant="ghost" onClick={()=>setDetailLead(null)}>Cancelar</Btn><Btn variant="danger" onClick={archiveLead}>Arquivar</Btn><Btn variant="primary" onClick={saveLeadDetail}>Salvar</Btn></>}>
+        footer={<>
+          <Btn variant="ghost" onClick={()=>setDetailLead(null)}>Cancelar</Btn>
+          <Btn variant="danger" onClick={deleteLeadPermanent}>Excluir</Btn>
+          <Btn variant="ghost" onClick={archiveLead} style={{borderColor:'#F59E0B',color:'#92400E'}}>📦 Arquivar</Btn>
+          <Btn variant="primary" onClick={saveLeadDetail}>Salvar</Btn>
+        </>}>
         {detailLead&&(
           <div>
             <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
