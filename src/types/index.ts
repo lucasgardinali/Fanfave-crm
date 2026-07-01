@@ -1,5 +1,4 @@
-
-export type LeadStatus = 'novo' | 'contato' | 'demo' | 'negociacao' | 'fechado';
+export type LeadStatus = 'novo' | 'contato' | 'demo' | 'negociacao' | 'fechado' | 'arquivado';
 
 export type LeadCanal =
   | 'instagram'
@@ -20,7 +19,7 @@ export type LeadSegmento =
   | 'Outro';
 
 export interface Lead {
-  id: string;
+  id: string | number;
   nome: string;
   whatsapp: string;
   email?: string;
@@ -30,7 +29,10 @@ export interface Lead {
   status: LeadStatus;
   origem: LeadCanal;
   notas?: string;
-  data: string; // ISO string
+  data: string;
+  atualizado?: string;
+  proxima_acao?: string;      // ISO string — data/hora da próxima ação agendada
+  proxima_acao_desc?: string; // descrição da próxima ação
 }
 
 export interface Notificacao {
@@ -57,4 +59,6 @@ export interface AddLeadFormData {
   status: LeadStatus;
   canal: LeadCanal;
   notas: string;
+  proxima_acao: string;
+  proxima_acao_desc: string;
 }
