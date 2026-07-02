@@ -1,4 +1,3 @@
-
 export const COLORS = {
   blue:       '#1A3EE8',
   blueDark:   '#1230B8',
@@ -44,19 +43,21 @@ export const NEXT_STATUS: Record<string, string> = {
 };
 
 export const CANAL_LABEL: Record<string, string> = {
-  instagram: 'Instagram Ads',
-  landing:   'Landing page',
-  whatsapp:  'WhatsApp',
-  indicacao: 'Indicação',
-  manual:    'Manual',
+  instagram:   'Instagram Ads',
+  landing:     'Landing page',
+  whatsapp:    'WhatsApp',
+  indicacao:   'Indicação',
+  manual:      'Manual',
+  diagnostico: 'Diagnóstico',
 };
 
 export const CANAL_COLOR: Record<string, { bg: string; text: string }> = {
-  instagram: { bg: '#FDE8F6', text: '#9B1B6E' },
-  landing:   { bg: '#EEF2FD', text: '#1A3EE8' },
-  whatsapp:  { bg: '#D1FAE5', text: '#065F46' },
-  indicacao: { bg: '#FFF3DC', text: '#7A4500' },
-  manual:    { bg: '#F4F5F9', text: '#6B7280' },
+  instagram:   { bg: '#FDE8F6', text: '#9B1B6E' },
+  landing:     { bg: '#EEF2FD', text: '#1A3EE8' },
+  whatsapp:    { bg: '#D1FAE5', text: '#065F46' },
+  indicacao:   { bg: '#FFF3DC', text: '#7A4500' },
+  manual:      { bg: '#F4F5F9', text: '#6B7280' },
+  diagnostico: { bg: '#E0F2FE', text: '#075985' },
 };
 
 export const SEGMENTS = [
